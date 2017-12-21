@@ -28,10 +28,17 @@ const routes: Routes = [{
   }, {
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
-  }, {
-    path: 'tables',
-    loadChildren: './tables/tables.module#TablesModule',
-  }, {
+  },
+
+  { path: 'new',  loadChildren: './new/new.module#NewModule' },
+  { path: 'members',  loadChildren: './members/members.module#MembersModule' },
+  { path: 'services',  loadChildren: './services/services.module#ServicesModule' },
+  { path: 'accounting',  loadChildren: './accounting/accounting.module#AccountingModule' },
+  { path: 'rule',  loadChildren: './rule/rule.module#RuleModule' },
+  { path: 'documents',  loadChildren: './documents/documents.module#DocumentsModule' },
+  { path: 'emergency',  loadChildren: './emergency/emergency.module#EmergencyModule' },
+  { path: 'property',  loadChildren: './property/property.module#PropertyModule' },
+   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

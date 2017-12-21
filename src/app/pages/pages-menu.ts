@@ -157,24 +157,37 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Committee Member',
-        link: '/pages/forms/inputs',
+        link: '/pages/members/committee',
       },
       {
         title: 'Residents Members',
-        link: '/pages/forms/layouts',
+        link: '/pages/members/residents',
+
       },
     ],
   },
+  // {
+  //   title: 'new',
+  //   icon: 'nb-person',
+  //   children: [
+  //     {
+  //           title: 'New Page', // menu title
+  //           icon: 'ion-android-home', // menu icon
+  //           link :'/pages/new'
+
+  //     },
+  //   ],
+  // },
   {
     title: 'Society Property',
     icon: 'fa fa-building',
     children: [
       {
         title: 'Society Property',
-        link: '/pages/components/tree',
+        link: '/pages/property/property',
       }, {
         title: 'Society Assets',
-        link: '/pages/components/notifications',
+        link: '/pages/property/assets',
       },
     ],
   },
@@ -184,36 +197,38 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Generate Bill',
-        link: '/pages/components/tree',
+        link: '/pages/accounting',
       }, {
         title: 'Add charges',
-        link: '/pages/components/notifications',
+        link: '/pages/accounting',
+        // link: '/pages/components/notifications',
       },
       {
         title: 'Generate Balance sheet',
-        link: '/pages/components/notifications',
+        link: '/pages/accounting',
       },
       {
         title: 'Add Bill Due dates',
-        link: '/pages/components/notifications',
+        link: '/pages/accounting',
       },
     ],
   },
   {
     title: 'Services',
     icon: 'nb-location',
+
     children: [
       {
         title: 'Doctor Service',
-        link: '/pages/maps/gmaps',
+        link: '/pages/services',
       },
       {
         title: 'Plumber Service',
-        link: '/pages/maps/leaflet',
+        link: '/pages/services',
       },
       {
         title: 'Electrician Service',
-        link: '/pages/maps/bubble',
+        link: '/pages/services',
       },
     ],
   },
@@ -241,15 +256,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Add Circular',
-        link: '/pages/editors/tinymce',
+        link: '/pages/documents/add-doc',
       },
       {
         title: 'Circulars',
-        link: '/pages/editors/ckeditor',
+        link: '/pages/documents/docs',
       },
       {
         title: 'User Documents',
-        link: '/pages/editors/ckeditor',
+        link: '/pages/documents/docs',
       },
     ],
   },
@@ -259,11 +274,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Add Emergency Contact',
-        link: '/pages/tables/smart-table',
+        link: '/pages/emergency',
       },
       {
         title: 'Emergency Contacts',
-        link: '/pages/tables/smart-table',
+        link: '/pages/emergency',
       },
     ],
   },
@@ -273,11 +288,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Add Rules',
-        link: '/pages/tables/smart-table',
+        link: '/pages/rule/add-rule',
       },
       {
         title: 'Society Rule',
-        link: '/pages/tables/smart-table',
+        link: '/pages/rule/rules',
       },
     ],
   },
