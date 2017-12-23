@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MembersComponent } from './members.component';
-
 import { ResidentsComponent } from './residents/residents.component';
 import { CommitteeComponent } from './committee/committee.component';
+
 
 
 const routes: Routes = [{
@@ -17,7 +17,8 @@ const routes: Routes = [{
   {
     path: 'committee',
     component: CommitteeComponent,
-  }],
+  },
+],
 }];
 
 @NgModule({
@@ -30,4 +31,5 @@ export const routedComponents = [
   MembersComponent,
   ResidentsComponent,
   CommitteeComponent,
+
 ];

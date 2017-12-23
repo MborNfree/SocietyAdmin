@@ -26,9 +26,9 @@ export interface AppConfig {
 }
 
 export const APPCONFIG: AppConfig = {
-    BASE_URL: 'https://society-182906.firebaseio.com/',
-    APP_ID: 'society-182906',
-    APP_SECRET: 'uQ75ZXEJr0TmGGO67jE2DhLSBoZfTFnE2IqvRex9',
+    BASE_URL: '',
+    APP_ID: '',
+    APP_SECRET: '',
 };
 
 

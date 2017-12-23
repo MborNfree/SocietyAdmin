@@ -1,50 +1,10 @@
-<div class="row">
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Pie</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-pie1></ngx-chartjs-pie1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Bar</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-bar1></ngx-chartjs-bar1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Line</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-line1></ngx-chartjs-line1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Multiple x-axis</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-multiple-xaxis1></ngx-chartjs-multiple-xaxis1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Bar Horizontal</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-bar-horizontal1></ngx-chartjs-bar-horizontal1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-6">
-    <nb-card>
-      <nb-card-header>Radar</nb-card-header>
-      <nb-card-body>
-        <ngx-chartjs-radar1></ngx-chartjs-radar1>
-      </nb-card-body>
-    </nb-card>
-  </div>
-</div>
+<nb-card>
+  <nb-card-header>
+    Committee Table
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

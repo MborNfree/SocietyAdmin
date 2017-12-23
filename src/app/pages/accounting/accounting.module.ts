@@ -1,5 +1,5 @@
-import { NgModule }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AccountingComponent } from './accounting.component';
@@ -10,10 +10,10 @@ import { Accountingrouting } from './accounting.routing';
   imports: [
     CommonModule,
     FormsModule,
-    Accountingrouting
+    Accountingrouting,
   ],
   declarations: [
-    AccountingComponent
-  ]
+    AccountingComponent,
+  ],
 })
 export class AccountingModule {}

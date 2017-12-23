@@ -5,8 +5,8 @@ import { AccountingComponent } from './accounting.component';
 const routes: Routes = [
   {
     path: '',
-    component: AccountingComponent
-  }
+    component: AccountingComponent,
+  },
 ];
 
 export const Accountingrouting = RouterModule.forChild(routes);

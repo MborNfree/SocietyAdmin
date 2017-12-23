@@ -5,14 +5,14 @@ import { SmartTableService } from '../../../@core/data/smart-table.service';
 
 @Component({
   selector: 'ngx-smart-table',
-  templateUrl: './residents.component.html',
+  templateUrl: './smart-table.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class ResidentsComponent {
+export class SmartTableComponent {
 
   settings = {
     add: {
@@ -56,6 +56,7 @@ export class ResidentsComponent {
       },
     },
   };
+
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableService) {
@@ -70,5 +71,4 @@ export class ResidentsComponent {
       event.confirm.reject();
     }
   }
-
 }

@@ -1,5 +1,5 @@
-import { NgModule }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { EmergencyComponent } from './emergency.component';
@@ -10,11 +10,11 @@ import { Emergencyrouting } from './emergency.routing';
   imports: [
     CommonModule,
     FormsModule,
-    Emergencyrouting
+    Emergencyrouting,
   ],
   declarations: [
     EmergencyComponent,
 
-  ]
+  ],
 })
 export class EmergencyModule {}

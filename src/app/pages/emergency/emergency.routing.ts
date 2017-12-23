@@ -5,8 +5,8 @@ import { EmergencyComponent } from './emergency.component';
 const routes: Routes = [
   {
     path: '',
-    component: EmergencyComponent
-  }
+    component: EmergencyComponent,
+  },
 ];
 
 export const Emergencyrouting = RouterModule.forChild(routes);
