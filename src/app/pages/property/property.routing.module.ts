@@ -4,18 +4,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { PropertyComponent } from './property.component';
 import { SocietyPropertyComponent } from './society-property/society-property.component';
 import { SocietyAssetsComponent } from './society-assets/society-assets.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 
 
 const routes: Routes = [{
   path: '',
   component: PropertyComponent,
   children: [{
-    path: 'property',
+    path: 'properties',
     component: SocietyPropertyComponent,
   },
   {
     path: 'assets',
     component: SocietyAssetsComponent,
+  },
+  {
+    path: 'add-property',
+    component: AddPropertyComponent,
   }],
 }];
 
@@ -35,5 +40,6 @@ export const routedComponents = [
   PropertyComponent,
   SocietyPropertyComponent,
   SocietyAssetsComponent,
+  AddPropertyComponent,
 
 ];

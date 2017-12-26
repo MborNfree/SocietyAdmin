@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ThemeModule } from '../../@theme/theme.module';
 
-import { ServicesComponent } from './services.component';
-import { routing } from './services.routing';
+import { ServiceRoutingModule, routedComponents} from './services.routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    routing,
+    ThemeModule,
+    ServiceRoutingModule,
   ],
   declarations: [
-    ServicesComponent,
+    ...routedComponents,
   ],
 })
 export class ServicesModule {}

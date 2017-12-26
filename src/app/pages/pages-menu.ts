@@ -191,10 +191,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Society Property',
-        link: '/pages/property',
+        link: '/pages/property/properties',
       }, {
         title: 'Society Assets',
-        link: '/pages/property',
+        link: '/pages/property/assets',
+      },
+      {
+        title: 'Add Property',
+        link: '/pages/property/add-property',
       },
     ],
   },
@@ -226,17 +230,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
     children: [
       {
-        title: 'Doctor Service',
-        link: '/pages/services',
+        title: 'Add Service',
+        link: '/pages/services/add-services',
       },
       {
-        title: 'Plumber Service',
-        link: '/pages/services',
+        title: 'Service List',
+        link: '/pages/services/service-list',
       },
-      {
-        title: 'Electrician Service',
-        link: '/pages/services',
-      },
+      // {
+      //   title: 'Doctor Service',
+      //   link: '/pages/services',
+      // },
+      // {
+      //   title: 'Plumber Service',
+      //   link: '/pages/services',
+      // },
+      // {
+      //   title: 'Electrician Service',
+      //   link: '/pages/services',
+      // },
     ],
   },
   {
@@ -281,11 +293,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Add Emergency Contact',
-        link: '/pages/emergency',
+        link: '/pages/emergency/add-emergency',
       },
       {
         title: 'Emergency Contacts',
-        link: '/pages/emergency',
+        link: '/pages/emergency/emergency-list',
       },
     ],
   },

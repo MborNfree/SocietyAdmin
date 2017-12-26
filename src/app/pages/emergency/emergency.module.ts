@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ThemeModule } from '../../@theme/theme.module';
 
 import { EmergencyComponent } from './emergency.component';
-import { Emergencyrouting } from './emergency.routing';
+import { EmergencyRoutingModule, routedComponents } from './emergency.routing.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    Emergencyrouting,
+    ThemeModule,
+    EmergencyRoutingModule,
   ],
-  declarations: [
-    EmergencyComponent,
-
-  ],
+  declarations: [...routedComponents],
 })
 export class EmergencyModule {}

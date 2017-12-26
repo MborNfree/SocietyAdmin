@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ngx-services',
-  template: `<strong>My page content here</strong>`,
+  template: `
+    <router-outlet></router-outlet>
+  `,
 })
 export class ServicesComponent {
   constructor() {}
