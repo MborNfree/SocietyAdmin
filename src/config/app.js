@@ -126,19 +126,19 @@ exports.navigation=[
         {
           "link": "fireadmin",
           "path": "events",
-          "name": "Skopje",
+          "name": "Holi",
           "icon":"event",
           "tableFields":["event_name","event_type"]
         },{
           "link": "fireadmin",
           "path": "events",
-          "name": "Sofia",
+          "name": "Diwali",
           "icon":"event",
           "tableFields":["event_name","event_type"],
         },{
           "link": "fireadmin",
           "path": "events",
-          "name": "Belgrade",
+          "name": "Navratri",
           "icon":"event",
           "tableFields":["event_name","description"],
         }
@@ -249,6 +249,28 @@ exports.navigation=[
         }
       ]
      },
+     {
+      "link": "fireadmin",
+      "path": "documents",
+      "name": "Society Rules",
+      "icon":"note",
+      "tableFields":[],
+      "subMenus":[
+        {
+          "link": "addrule",
+          "path": "",
+          "name": "Add Rule",
+          "icon":"event",
+          "tableFields":[]
+        },{
+          "link": "fireadmin",
+          "path": "society_rules",
+          "name": "Rules",
+          "icon":"event",
+          "tableFields":["Rule:","Description"],
+        }
+      ]
+    },
      {
       "link": "fireadmin",
       "path": "billing",
