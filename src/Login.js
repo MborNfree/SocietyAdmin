@@ -41,8 +41,6 @@ class Login extends Component {
   }
 
 
-
-
  authenticate(username,password){
      const displayError=(error)=>{
         this.setState({error:error});
@@ -56,6 +54,7 @@ class Login extends Component {
        firebase.auth().signInWithEmailAndPassword(username,password)
        .then(
          function(data) {
+             console.log(data);
            console.log("Yes, user is logged in");
          }
        )

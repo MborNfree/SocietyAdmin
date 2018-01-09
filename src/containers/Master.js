@@ -1,12 +1,12 @@
-import React, {Component,PropTypes} from 'react'
-import {Link} from 'react-router'
-import NavItem from '../components/NavItem'
-import { IndexLink } from 'react-router'
+import React, {Component,PropTypes} from 'react';
+import {Link} from 'react-router';
+import NavItem from '../components/NavItem';
+import { IndexLink } from 'react-router';
 import Config from   '../config/app';
 var md5 = require('md5');
 
 
-import firebase from './../config/database'
+import firebase from './../config/database';
 
 class Master extends Component {
 
@@ -28,6 +28,7 @@ class Master extends Component {
      }
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
+     
         setUser(user);
         // User is signed in.
         console.log("User has Logged  in Master");
