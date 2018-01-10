@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from 'firebase';
-import FCM from "react-native-fcm";
+// import FCM from "react-native-fcm";
 
 export default class PushNotification extends Component {
   constructor(props) {

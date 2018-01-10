@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import FCM from "react-native-fcm";
+// import FCM from "react-native-fcm";
 
 export default class Home extends Component {
   
@@ -10,11 +10,11 @@ export default class Home extends Component {
     };
   }
   componentDidMount () {
-    FCM.requestPermissions();
-    FCM.getFCMToken().then(token => {
-      this.setState({fcm_token:token});
-      //update your fcm token on server.
-    });
+    // FCM.requestPermissions();
+    // FCM.getFCMToken().then(token => {
+    //   this.setState({fcm_token:token});
+    //   //update your fcm token on server.
+    // });
   }
   render() {
     return (
