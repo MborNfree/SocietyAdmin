@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 
-import Master from './containers/Master'
-import App from './containers/App'
-import Fireadmin from './containers/Fireadmin'
-import Firestoreadmin from './containers/Firestoreadmin'
-import Push from './containers/Push'
-import AddBill from './containers/Addbill'
-import Profile from './containers/Profile'
+import Master from './containers/Master';
+import App from './containers/App';
+import Fireadmin from './containers/Fireadmin';
+import Firestoreadmin from './containers/Firestoreadmin';
+import Push from './containers/Push';
+import AddBill from './containers/Addbill';
+import Profile from './containers/Profile';
+
+import Home from './containers/Home';
 import AddEvent from './containers/AddEvent';
 import AddService from './containers/AddService';
 import AddContact from './containers/AddContact';
@@ -56,6 +58,8 @@ class Admin extends Component {
             <Route path="/push" component={Push}/>
             <Route path="/addbill" component={AddBill}/>
             <Route path="/profile" component={Profile}/>
+            <Route path="/home" component={Home}/>
+          
             <Route path="/addevent" component={AddEvent}/>
             <Route path="/addservice" component={AddService}/>
             <Route path="/addservicecat" component={AddServiceCat}/>

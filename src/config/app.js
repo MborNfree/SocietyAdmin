@@ -23,7 +23,7 @@ exports.adminConfig={
   },
 
   "codeversion": "1.0",
-  "allowedUsers":null, //If null, allow all users, else it should be array of allowd users
+  "allowedUsers":'admin@niynata.co.in', //If null, allow all users, else it should be array of allowd users
   "allowGoogleAuth":true, //Allowed users must contain list of allowed users in order to use google auth
   "fieldBoxName": "Fields",
   "maxNumberOfTableHeaders":5,
@@ -107,8 +107,17 @@ exports.navigation=[
       "schema":null,
       "icon":"home",
       "path": "",
-       isIndex:true,
+      
     },
+    {
+      "link": "home",
+      "name": "Home",
+      "schema":null,
+      "icon":"home",
+      "path": "",
+      
+    },
+ 
     {
       "link": "fireadmin",
       "path": "events",
