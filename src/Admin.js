@@ -8,7 +8,7 @@ import Firestoreadmin from './containers/Firestoreadmin';
 import Push from './containers/Push';
 import AddBill from './containers/Addbill';
 import Profile from './containers/Profile';
-
+import Forum from './containers/Forum';
 import Home from './containers/Home';
 import AddEvent from './containers/AddEvent';
 import AddService from './containers/AddService';
@@ -59,7 +59,7 @@ class Admin extends Component {
             <Route path="/addbill" component={AddBill}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/home" component={Home}/>
-          
+            <Route path="/forum" component={Forum}/>
             <Route path="/addevent" component={AddEvent}/>
             <Route path="/addservice" component={AddService}/>
             <Route path="/addservicecat" component={AddServiceCat}/>

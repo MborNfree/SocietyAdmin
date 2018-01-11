@@ -17,18 +17,18 @@ exports.adminConfig={
   "slogan":"made with love for a better firebase.",
 
   "design":{
-    "sidebarBg":"sidebar-1.jpg", //sidebar-1, sidebar-2, sidebar-3
+    "sidebarBg":"sidebar-3.jpg", //sidebar-1, sidebar-2, sidebar-3
     "dataActiveColor":"rose", //"purple | blue | green | orange | red | rose"
     "dataBackgroundColor":"black", // "white | black"
   },
 
   "codeversion": "1.0",
-  "allowedUsers":'admin@niynata.co.in', //If null, allow all users, else it should be array of allowd users
+  "allowedUsers":'admin@niyanta.co.in', //If null, allow all users, else it should be array of allowd users
   "allowGoogleAuth":true, //Allowed users must contain list of allowed users in order to use google auth
   "fieldBoxName": "Fields",
   "maxNumberOfTableHeaders":5,
   "prefixForJoin":["-event"],
-  "methodOfInsertingNewObjects":"push", //timestamp (key+time) | push - use firebase keys
+  "methodOfInsertingNewObjects":"timestamp", //timestamp (key+time) | push - use firebase keys
   "urlSeparator":"+",
   "urlSeparatorFirestoreSubArray":"~",
 
@@ -117,7 +117,14 @@ exports.navigation=[
       "path": "",
       
     },
- 
+    // {
+    //   "link": "forum",
+    //   "name": "Forum",
+    //   "schema":null,
+    //   "icon":"home",
+    //   "path": "",
+      
+    // },
     {
       "link": "fireadmin",
       "path": "events",
@@ -260,7 +267,7 @@ exports.navigation=[
      },
      {
       "link": "fireadmin",
-      "path": "documents",
+      "path": "",
       "name": "Society Rules",
       "icon":"note",
       "tableFields":[],
@@ -322,8 +329,17 @@ exports.navigation=[
     }
   ];
 
+// exports.pushSettings={
+//   "pushType":"onesignal", //firebase or onesignal
+//   "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
+//   "pushTopic":"news", //Only for firebase push
+//   "oneSignal_REST_API_KEY":"",
+//   "oneSignal_APP_KEY":"",
+//   "included_segments":"Active Users", //Only for onesignal push
+// }
+
 exports.pushSettings={
-  "pushType":"onesignal", //firebase or onesignal
+  "pushType":"firebase", //firebase or onesignal
   "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
   "pushTopic":"news", //Only for firebase push
   "oneSignal_REST_API_KEY":"",
