@@ -65,7 +65,7 @@ export default class PushNotification extends Component {
   componentDidMount() {
       
 
-    // this method generate fcm token.
+    // //this method generate fcm token.
     // FCM.requestPermissions();
     // FCM.getFCMToken().then(token => {
     //   console.log("TOKEN (getFCMToken)", token);
@@ -94,7 +94,7 @@ export default class PushNotification extends Component {
   
   // This method display the notification on mobile screen.
   sendRemote(notif) {
-    console.log('send');
+    // console.log('send');
     // FCM.presentLocalNotification({
     //   title: notif.title,
     //   body: notif.body,

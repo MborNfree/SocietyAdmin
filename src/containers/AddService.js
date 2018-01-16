@@ -4,6 +4,7 @@ import Config from   '../config/app';
 var request = require('superagent');
 import NavBar from '../components/NavBar';
 var firebase = require('firebase');
+import DbConfig from   '../config/database';
 
 
 
@@ -43,36 +44,21 @@ class App extends Component {
 
 	handleSubmitFirebase(event) {
         //alert('A push was submitted: ' + this.state.value);
-        alert(this.state.value);
-        alert(JSON.stringify(event));
-        //event.preventDefault();
-   //console.log(Fireadmin.elements);
-
-
+      
+        event.preventDefault();
+        var serviceInfo = {
+            Service_name : this.service_nm.value,
+            Service_type : this.service_type.value,
+            Description : this.service_desc.value,
+            Contact_no : this.service_cnt.value,
+            S_ID :  DbConfig.database().ref('services').push(serviceInfo).key,
+           
+          }; //user info
+        DbConfig.database().ref('services').push(serviceInfo);
+        this.serviceCat_nm.value = ''; // <- clear the input
+        
      }
      
- 
-    handleAdd(text){
-       this.firebaseRef = new firebase('https://society-182906.firebaseio.com/docuemts/');
-        this.rootRef.once("value", function(snapshot){
-                var todos =[];
-                snapshot.forEach(function(data){
-                     console.log(data.val());
-                    var  todo= {
-                            id : data.val().id,
-                            text : data.val().text
-                     }
-                     todos.push(todo);
-                     this.setState({todos:todo})
-                });
-        })
-        var NewTodo ={
-            id : this.state.todos.length+1,
-            text : text
-        }
-        this.rootRef.push(NewTodo);
-    }
-
  
    
   render() {
@@ -90,12 +76,20 @@ class App extends Component {
                     <form onSubmit={this.handleSubmitFirebase}>
                         <div className="form-group label-floating is-empty">
                             <label className="control-label">Serivce Name</label>
-                            <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
+                            <input type="text" className="form-control"  ref={ el => this.service_nm = el }  onChange={this.handleChange} />
                         <span className="material-input"></span></div>
                         <div className="form-group label-floating is-empty">
                             <label className="control-label">Serivce Type</label>
-                            <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
+                            <input type="text" className="form-control"  ref={ el => this.service_type = el } onChange={this.handleChange} />
                         <span className="material-input"></span></div>
+                        <div className="form-group label-floating is-empty">
+                        <label className="control-label">Serivce Description</label>
+                        <input type="text" className="form-control"  ref={ el => this.service_desc = el } onChange={this.handleChange} />
+                    <span className="material-input"></span></div>
+                    <div className="form-group label-floating is-empty">
+                        <label className="control-label">Serivce Contact number</label>
+                        <input type="text" className="form-control"  ref={ el => this.service_cnt = el } onChange={this.handleChange} />
+                    <span className="material-input"></span></div>
                         
                         <button type="submit" className="btn btn-fill btn-rose">Submit</button>
                     </form>

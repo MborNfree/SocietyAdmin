@@ -7,7 +7,6 @@ export default class Forum extends Component {
     
     }
 
- 
 render() {
     return (
 
@@ -32,16 +31,16 @@ render() {
             <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
               <div class="mdl-tab">
                 <div id="menu-recent" class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">new_releases</i> Recent
+                  <i className="material-icons">new_releases</i> Recent
                 </div>
                 <div id="menu-my-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">home</i> My posts
+                  <i className="material-icons">home</i> My posts
                 </div>
                 <div id="menu-my-top-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">trending_up</i> My top posts
+                  <i className="material-icons">trending_up</i> My top posts
                 </div>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
-                  <i class="material-icons">mode_edit</i>
+                <button className="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
+                  <i className="material-icons">mode_edit</i>
                 </button>
               </div>
             </div>

@@ -87,7 +87,7 @@ class App extends Component {
       	<div className="col-md-10">
             <div className="card">
                 <div className="card-header card-header-icon" data-background-color="rose">
-                <i class="material-icons">account_balance</i>
+                <i className="material-icons">account_balance</i>
                 </div>
                 <div className="card-content">
                     <h4 className="card-title">Save data {this.state.status}</h4>

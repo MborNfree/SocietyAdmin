@@ -2,7 +2,7 @@ import React, {Component,PropTypes} from 'react'
 import {Link} from 'react-router'
 import Config from   '../config/app';
 var request = require('superagent');
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar';
 
 class App extends Component {
 

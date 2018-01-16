@@ -65,7 +65,7 @@ class App extends Component {
       	<div className="col-md-10">
             <div className="card">
                 <div className="card-header card-header-icon" data-background-color="rose">
-                <i class="material-icons">account_balance_wallet</i>
+                <i className="material-icons">account_balance_wallet</i>
                 </div>
                 <div className="card-content">
                     <h4 className="card-title">Save Account Type</h4>

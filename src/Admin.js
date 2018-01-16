@@ -7,9 +7,8 @@ import Fireadmin from './containers/Fireadmin';
 import Firestoreadmin from './containers/Firestoreadmin';
 import Push from './containers/Push';
 import AddBill from './containers/Addbill';
-import Profile from './containers/Profile';
+// import Profile from './containers/Profile';
 import Forum from './containers/Forum';
-import Home from './containers/Home';
 import AddEvent from './containers/AddEvent';
 import AddService from './containers/AddService';
 import AddContact from './containers/AddContact';
@@ -21,7 +20,7 @@ import AddBillCharges from './containers/AddBillCharges';
 import AddDocument from './containers/AddDocument';
 import Config from   './config/app';
 
-import { Router, Route,hashHistory,IndexRoute } from 'react-router'
+import { Router, Route,hashHistory,IndexRoute } from 'react-router';
 
 class Admin extends Component {
 
@@ -57,8 +56,6 @@ class Admin extends Component {
             <Route path="/app" component={App}/>
             <Route path="/push" component={Push}/>
             <Route path="/addbill" component={AddBill}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/home" component={Home}/>
             <Route path="/forum" component={Forum}/>
             <Route path="/addevent" component={AddEvent}/>
             <Route path="/addservice" component={AddService}/>

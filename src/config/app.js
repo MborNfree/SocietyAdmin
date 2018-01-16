@@ -101,22 +101,15 @@ exports.navigation=[
       "path": "",
        isIndex:true,
     },
-    {
-      "link": "profile",
-      "name": "Profile",
-      "schema":null,
-      "icon":"home",
-      "path": "",
+    // {
+    //   "link": "profile",
+    //   "name": "Profile",
+    //   "schema":null,
+    //   "icon":"home",
+    //   "path": "",
       
-    },
-    {
-      "link": "home",
-      "name": "Home",
-      "schema":null,
-      "icon":"home",
-      "path": "",
-      
-    },
+    // },
+    
     // {
     //   "link": "forum",
     //   "name": "Forum",
@@ -267,7 +260,7 @@ exports.navigation=[
      },
      {
       "link": "fireadmin",
-      "path": "",
+      "path": "society_rules",
       "name": "Society Rules",
       "icon":"note",
       "tableFields":[],
@@ -321,6 +314,13 @@ exports.navigation=[
         }
       ]
      },{
+      "link": "pushnotification",
+      "path": "",
+      "name": "Notifications",
+      "icon":"speaker_notes",
+      "tableFields":[],
+    },
+    {
       "link": "push",
       "path": "",
       "name": "Push notification",
@@ -340,7 +340,8 @@ exports.navigation=[
 
 exports.pushSettings={
   "pushType":"firebase", //firebase or onesignal
-  "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
+  "Firebase_AuthorizationPushKey": "AIzaSyBqGyUBMjDufKMYJJ8d2sqYLIl5Ynofs9A",
+ // "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
   "pushTopic":"news", //Only for firebase push
   "oneSignal_REST_API_KEY":"",
   "oneSignal_APP_KEY":"",
