@@ -842,7 +842,7 @@ class Fireadmin extends Component {
                   <div className="col-md-3">
                   </div>
                   <div className="col-md-3">
-                    <a onClick={()=>{this.deleteFieldAction(null,false)}} className="btn btn-danger pull-right">Delete Element</a>
+                    <a onClick={()=>{this.deleteFieldAction(null,false)}} className="btn btn-danger pull-right">Delete All Element</a>
                   </div>
                 </div>
 

@@ -8,12 +8,13 @@ import Firestoreadmin from './containers/Firestoreadmin';
 import Push from './containers/Push';
 import AddBill from './containers/Addbill';
 // import Profile from './containers/Profile';
-import Forum from './containers/Forum';
+// import Forum from './containers/Forum';
 import AddEvent from './containers/AddEvent';
 import AddService from './containers/AddService';
 import AddContact from './containers/AddContact';
 import AddServiceCat from './containers/AddServiceCat';
 import AddAccount from './containers/AddAccount';
+import AddRule from './containers/AddRule';
 import AddAccountType from './containers/AddAccountType';
 import AddSubAccount from './containers/AddSubAccount';
 import AddBillCharges from './containers/AddBillCharges';
@@ -56,8 +57,8 @@ class Admin extends Component {
             <Route path="/app" component={App}/>
             <Route path="/push" component={Push}/>
             <Route path="/addbill" component={AddBill}/>
-            <Route path="/forum" component={Forum}/>
             <Route path="/addevent" component={AddEvent}/>
+            <Route path="/addrule" component={AddRule}/>
             <Route path="/addservice" component={AddService}/>
             <Route path="/addservicecat" component={AddServiceCat}/>
             <Route path="/addaccount" component={AddAccount}/>

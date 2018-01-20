@@ -330,7 +330,7 @@ exports.navigation=[
   ];
 
 // exports.pushSettings={
-//   "pushType":"onesignal", //firebase or onesignal
+//   "pushType":"firebase", //firebase or onesignal
 //   "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
 //   "pushTopic":"news", //Only for firebase push
 //   "oneSignal_REST_API_KEY":"",
@@ -346,8 +346,8 @@ exports.pushSettings={
   "oneSignal_REST_API_KEY":"",
   "oneSignal_APP_KEY":"",
   "included_segments":"Active Users", //Only for onesignal push
-}
+};
 
 exports.userDetails={
 
-}
+};
