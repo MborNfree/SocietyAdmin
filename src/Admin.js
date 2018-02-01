@@ -6,7 +6,7 @@ import App from './containers/App';
 import Fireadmin from './containers/Fireadmin';
 import Firestoreadmin from './containers/Firestoreadmin';
 import Push from './containers/Push';
-import AddBill from './containers/Addbill';
+import AddBill from './containers/AddBill';
 // import Profile from './containers/Profile';
 // import Forum from './containers/Forum';
 import AddEvent from './containers/AddEvent';
@@ -19,9 +19,11 @@ import AddAccountType from './containers/AddAccountType';
 import AddSubAccount from './containers/AddSubAccount';
 import AddBillCharges from './containers/AddBillCharges';
 import AddDocument from './containers/AddDocument';
+import AddAlbum from './containers/AddAlbum';
 import Config from   './config/app';
 
 import { Router, Route,hashHistory,IndexRoute } from 'react-router';
+
 
 class Admin extends Component {
 
@@ -58,6 +60,7 @@ class Admin extends Component {
             <Route path="/push" component={Push}/>
             <Route path="/addbill" component={AddBill}/>
             <Route path="/addevent" component={AddEvent}/>
+            <Route path="/addalbum" component={AddAlbum}/>
             <Route path="/addrule" component={AddRule}/>
             <Route path="/addservice" component={AddService}/>
             <Route path="/addservicecat" component={AddServiceCat}/>

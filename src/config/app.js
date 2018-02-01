@@ -89,7 +89,7 @@ exports.adminConfig={
     "finite": true,
     "retainLastPage": false
   }
-}
+};
 
 //Navigation
 exports.navigation=[
@@ -131,6 +131,20 @@ exports.navigation=[
           "name": "Add Event",
           "icon":"speaker_notes",
           "tableFields":[],
+        },
+        {
+          "link": "addalbum",
+          "path": "",
+          "name": "Add Album",
+          "icon":"speaker_notes",
+          "tableFields":[],
+        },
+        {
+          "link": "fireadmin",
+          "path": "album",
+          "name": "albums",
+          "icon":"event",
+          "tableFields":["album_name","date"]
         },
         {
           "link": "fireadmin",
@@ -341,7 +355,6 @@ exports.navigation=[
 exports.pushSettings={
   "pushType":"firebase", //firebase or onesignal
   "Firebase_AuthorizationPushKey": "AIzaSyBqGyUBMjDufKMYJJ8d2sqYLIl5Ynofs9A",
- // "Firebase_AuthorizationPushKey":"AIzaSyCFUf7fspu61J9YsWE-2A-vI9of1ihtSiE", //Firebase push authorization ket
   "pushTopic":"news", //Only for firebase push
   "oneSignal_REST_API_KEY":"",
   "oneSignal_APP_KEY":"",

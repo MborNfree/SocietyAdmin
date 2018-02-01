@@ -4,9 +4,10 @@ import Config from "../config/app";
 import DbConfig from "../config/database";
 var request = require("superagent");
 import NavBar from "../components/NavBar";
-var firebase = require("firebase");
 
-class App extends Component {
+
+class AddSubAccount extends Component {
+
   constructor(props, fdb) {
     super(props);
     this.state = { value: "", status: "", title: "" };
@@ -16,7 +17,7 @@ class App extends Component {
     this.handleSubmitFirebase = this.handleSubmitFirebase.bind(this);
     this.sendCallback = this.sendCallback.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() { }
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -125,4 +126,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default AddSubAccount;

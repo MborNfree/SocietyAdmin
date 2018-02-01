@@ -2,10 +2,10 @@
 * Makes first letter uppercase
 * @param {String} string, string to be converted
 */
-function capitalizeFirstLetter(string){
+function capitalizeFirstLetter(string) {
   return (string.charAt(0).toUpperCase() + string.slice(1)).replace(/_/g, ' ');;
 }
-exports.capitalizeFirstLetter=capitalizeFirstLetter;
+exports.capitalizeFirstLetter = capitalizeFirstLetter;
 
 /**
 * Gets object class type
@@ -18,25 +18,25 @@ exports.capitalizeFirstLetter=capitalizeFirstLetter;
 * getClass({})   === "Object";
 * getClass(null) === "null";
 */
-function getClass(obj){
+function getClass(obj) {
   if (typeof obj === "undefined")
     return "undefined";
   if (obj === null)
     return "null";
 
-  var className=Object.prototype.toString.call(obj).match(/^\[object\s(.*)\]$/)[1];
-  if (className=="Object"&&typeof(obj._lat) !== 'undefined'&&typeof(obj._long) !== 'undefined'){
-  	className="GeoPoint";
-  }else if (className=="Object"&&typeof(obj.firestore) !== 'undefined'&&typeof(obj.parent) !== 'undefined'){
-    className="DocumentReference";
+  var className = Object.prototype.toString.call(obj).match(/^\[object\s(.*)\]$/)[1];
+  if (className == "Object" && typeof (obj._lat) !== 'undefined' && typeof (obj._long) !== 'undefined') {
+    className = "GeoPoint";
+  } else if (className == "Object" && typeof (obj.firestore) !== 'undefined' && typeof (obj.parent) !== 'undefined') {
+    className = "DocumentReference";
   }
   return className;
 }
-exports.getClass=getClass;
+exports.getClass = getClass;
 
 
-function firebasePathToReactPath(firebasePath){
+function firebasePathToReactPath(firebasePath) {
   //ex. firebasePath =
 
 }
-exports.firebasePathToReactPath=firebasePathToReactPath;
+exports.firebasePathToReactPath = firebasePathToReactPath;

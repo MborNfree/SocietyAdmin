@@ -33,7 +33,7 @@ class App extends Component {
             title: "",
             value: "",
             status: ": SEND"
-        })
+        });
     }
 
     handleSubmitFirebase(event) {

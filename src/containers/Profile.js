@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import DbConfig from "../config/database";
 import FileUploader from 'react-firebase-file-uploader';
  
 class Profile extends Component {
