@@ -27,8 +27,8 @@ class App extends Component {
     }
 
     sendCallback(e, r) {
-        console.log(r);
-        console.log(e);
+        //console.log(r);
+        //console.log(e);
         this.setState({
             title: "",
             value: "",
@@ -42,6 +42,9 @@ class App extends Component {
 
         var url = 'https://fcm.googleapis.com/fcm/send';
         var json = '{"to":"' + Config.pushSettings.pushTopic + '","notification": {"body":"' + this.state.value + '",},"priority":10,}';
+        console.log("Url:"+url);
+        console.log("JSON:"+json);
+        console.log("Authorization:"+'key='+Config.pushSettings.Firebase_AuthorizationPushKey);
         request.post(url)
             .set('Content-Type', 'application/json')
             .set('Authorization', 'key=' + Config.pushSettings.Firebase_AuthorizationPushKey)
