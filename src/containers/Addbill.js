@@ -14,78 +14,88 @@ class AddBill extends Component {
             bill_nm: '',
             bill_eml: '',
             bill_total: '',
-            bill_id: ''
+            bill_id: '',
+            inputs:[],
         };
-        this.state = {
-            listVisible: false
-          };
+        this.userState = {
+            user_id:'',
+            email:'',
+            first_name:'',
+            last_name:''
+        };
+        this.chargeState ={
+            charge_id:'',
+            charge_title:'',
+            charge_type:'',
+            charge_amt:''
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitFirebase = this.handleSubmitFirebase.bind(this);
         this.sendCallback = this.sendCallback.bind(this);
-        this.renderListItems = this.renderListItems.bind(this);
-        this.select = this.select.bind(this);
-        this.show = this.show.bind(this);
-        this.hide = this.hide.bind(this);
-
-        this.usernm = [];
-        var colours = [{
-            name: "Red",
-            hex: "#F21B1B"
-          }, {
-            name: "Blue",
-            hex: "#1B66F2"
-          }, {
-            name: "Green",
-            hex: "#07BA16"
-          }];
-
+        this.appendInput = this.appendInput.bind(this);
+        this.getInitialState = this.getInitialState.bind(this);
+      
+        this.usercharge = [];
     }
     componentDidMount() {
 
         const rootRef = DbConfig.database().ref();
         const post = rootRef.child('billing').orderByKey();
+        const users = rootRef.child('users').orderByKey();
+        const bill_charges = rootRef.child('billing_charges').orderByKey();
 
-        post.once('value', snap => {
+        users.once('value', snap => {
             snap.forEach(child => {
-                this.setState({
-                    bill_id: child.key,
-                    bill_nm: child.val().bill_name,
-                    bill_eml: child.val().bill_eml,
-                    bill_total: child.val().total
-                });
+                this.userState = {
+                    user_id: child.key,
+                    email: child.val().email,
+                    first_name: child.val().first_name,
+                    last_name: child.val().last_name
+                };
                 //this.usernm = this.setState();
-                console.log( this.state);
+                //console.log( this.userState);
+            });
+        });
+        bill_charges.once('value', snap => {
+            snap.forEach(child => {
+                this.chargeState = {
+                    chrage_key:child.key,
+                    charge_id: child.charge_id,
+                    charge_title: child.val().charge_title,
+                    charge_type: child.val().charge_type,
+                    charge_amt: child.val().charge_amt
+                };
+                this.usercharge = this.chargeState;
+               //console.log( this.usercharge);
             });
         });
 
-    }
-      
-      select(item) {
-        this.props.selected = item;
-      }
-            
-      show() {
-        this.setState({ listVisible: true });
-        document.addEventListener("click", this.hide);
-      }
-            
-      hide() {
-        this.setState({ listVisible: false });
-        document.removeEventListener("click", this.hide);
-      }
-      
-      renderListItems() {
-        var items = [];
-        for (var i = 0; i < this.state.length; i++) {
-          var item = this.state[i];
-          console.log(this.item);
-          items.push(<div onClick={this.select.bind(null, item)}>
-            <span>{item.name}</span>
-          </div>);
-        }
-        return items;
-      }
+        console.log('user charges'+this.usercharge);
+        for (var i = 0; i < this.usercharge.length; i++) {
+            //this.usernm.push(<span  key={i}></span>);
+            console.log(this.usercharge.length);
+         }
 
+         this.usercharge.forEach(child => {
+        
+            console.log(this.usercharge.length);
+        });
+       
+    }
+ 
+    getInitialState() {
+        return {inputs:[]};
+    }
+   
+    appendInput(e) {
+        e.preventDefault();
+        var newInput = this.state.inputs.length;
+            console.log(newInput);
+        this.setState({ inputs: this.state.inputs.concat(newInput)},function(){
+            return;
+        });
+
+    }
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
@@ -133,50 +143,53 @@ class AddBill extends Component {
                                 <form onSubmit={this.handleSubmitFirebase}>
                                     <div className="form-group label-floating is-empty">
                                         <label className="control-label">Person Name</label>
-                                        <div className={"dropdown-container" + (this.state.listVisible ? " show" : "")}>
-                                        <div className={"dropdown-display" + (this.state.listVisible ? " clicked": "")} onClick={this.show}>
-                                          <span>{this.state.bill_nm}</span>
-                                          <i className="fa fa-angle-down"></i>
+                                        <div className="dropdown-container">
+                                            <div className="dropdown-display">
+                                                <span>{this.state.first_name}</span>
+                                                <i className="fa fa-angle-down"></i>
+                                            </div>
                                         </div>
-                                        <div className="dropdown-list">
-                                          <div>
-                                            {this.renderListItems()}
-                                          </div>
+                                        <span className="material-input"></span></div>
+
+                                        <div className="room-main">
+                                        <div className="online-est">
+                                            <h2 className="room-head">Bill charges
+                                                <a href="javascript:void(0);" onClick={this.appendInput} className="rednew-btn"><i className="fa fa-plus-circle"></i> Add charge</a>
+                                            </h2>
+                    
+                                           {this.state.inputs.map(function(item){
+                                                return (
+                                                        <div className="room-form" key={item} id={item}>
+                                                            {item}
+                                                            <a href="" className="remove"><i className="fa fa-remove"></i></a>
+                                                            <ul>
+                                                                <li>
+                                                                    <label>Name <span className="red">*</span></label>
+                                                                    <input type="text" ref={'name'+item} defaultValue={item} />
+                                                                </li>
+                    
+                                                            </ul>
+                                                        </div>
+                                                )
+                    
+                                           })}
                                         </div>
-                                      </div>
-                                        <input type="text" className="form-control" ref={el => this.pnm = el} onChange={this.handleChange} />
+                                    </div>
+                                    <div className="form-group label-floating is-empty">
+                                            <label className="control-label">status</label>
+                                            <select>
+                                                <option value="Unpaid">Unpaid</option>
+                                                <option value="Paid">Paid</option>
+                                            </select>
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Flat no</label>
-                                        <input type="text" className="form-control" ref={el => this.flatno = el} onChange={this.handleChange} />
+                                            <label className="control-label">total</label>
+                                            <input type="text" className="form-control" ref={el => this.billtotal = el} onChange={this.handleChange} />
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Bill Due Date</label>
-                                        <input type="date" className="form-control" ref={el => this.billdue = el} onChange={this.handleChange} />
-                                        <span className="material-input"></span></div>
-                                    <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Email</label>
-                                        <input type="email" className="form-control" ref={el => this.billeml = el} onChange={this.handleChange} />
-                                        <span className="material-input"></span></div>
-                                    <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Pan No</label>
-                                        <input type="text" className="form-control" ref={el => this.billpan = el} onChange={this.handleChange} />
-                                        <span className="material-input"></span></div>
-                                    <div className="form-group label-floating is-empty">
-                                        <label className="control-label">status</label>
-                                        <select>
-                                            <option value="Unpaid">Unpaid</option>
-                                            <option value="Paid">Paid</option>
-                                        </select>
-                                        <input type="text" className="form-control" ref={el => this.billstatus = el} onChange={this.handleChange} />
-                                        <span className="material-input"></span></div>
-                                    <div className="form-group label-floating is-empty">
-                                        <label className="control-label">total</label>
-                                        <input type="text" className="form-control" ref={el => this.billtotal = el} onChange={this.handleChange} />
-                                        <span className="material-input"></span></div>
-                                    <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Bill period</label>
-                                        <input type="date" className="form-control" ref={el => this.billrange = el} onChange={this.handleChange} />
+                                            <label className="control-label">Bill period</label>
+                                            <input type="date" className="form-control" ref={el => this.billto = el} onChange={this.handleChange} />
+                                            <input type="date" className="form-control" ref={el => this.billfrom = el} onChange={this.handleChange} />
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <span className="material-input"></span></div>

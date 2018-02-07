@@ -12,7 +12,6 @@ class AddRule extends Component {
     constructor(props, fdb) {
         super(props);
         this.state = { value: '', status: '', title: '' };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmitFirebase = this.handleSubmitFirebase.bind(this);
@@ -37,7 +36,7 @@ class AddRule extends Component {
             title: "",
             value: "",
             status: ": SEND"
-        })
+        });
     }
 
     handleSubmitFirebase(event) {
@@ -72,7 +71,10 @@ class AddRule extends Component {
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <label className="control-label">Rule Type</label>
-                                        <input type="text" className="form-control" ref={el => this.rule_type = el} onChange={this.handleChange} />
+                                        <select ref={el => this.rule_type = el} onChange={this.handleChange}>
+                                            <option value="Do's">Do's</option>
+                                            <option value="Don't">Don't</option>
+                                         </select>
                                         <span className="material-input"></span></div>
                                     <button type="submit" className="btn btn-fill btn-rose">Submit</button>
                                 </form>
