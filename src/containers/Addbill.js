@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-//import {Link} from 'react-router';
-//import Config from   '../config/app';
 import DbConfig from '../config/database';
-//var request = require('superagent');
 import NavBar from '../components/NavBar';
 
 class AddBill extends Component {
@@ -15,36 +12,40 @@ class AddBill extends Component {
             bill_eml: '',
             bill_total: '',
             bill_id: '',
-            inputs:[],
+            chargeInputs: [],
+            chargeTotal: [],
+            userInput: [],
+            total: '',
+            status: '',
+            selected: []
         };
         this.userState = {
-            user_id:'',
-            email:'',
-            first_name:'',
-            last_name:''
+            user_id: '',
+            email: '',
+            first_name: '',
+            last_name: ''
         };
-        this.chargeState ={
-            charge_id:'',
-            charge_title:'',
-            charge_type:'',
-            charge_amt:''
+        this.chargeState = {
+            charge_id: '',
+            charge_title: '',
+            charge_type: '',
+            charge_amt: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitFirebase = this.handleSubmitFirebase.bind(this);
-        this.sendCallback = this.sendCallback.bind(this);
-        this.appendInput = this.appendInput.bind(this);
-        this.getInitialState = this.getInitialState.bind(this);
-      
-        this.usercharge = [];
+        this.appendBillInput = this.appendBillInput.bind(this);
+        this.appendUserInput = this.appendUserInput.bind(this);
     }
-    componentDidMount() {
 
-        const rootRef = DbConfig.database().ref();
-        const post = rootRef.child('billing').orderByKey();
-        const users = rootRef.child('users').orderByKey();
-        const bill_charges = rootRef.child('billing_charges').orderByKey();
+    _onSelect(option) {
+        console.log('You selected ', option.label);
+        this.setState({ selected: option });
+    }
 
-        users.once('value', snap => {
+    appendUserInput() {
+        //e.preventDefault();
+
+        DbConfig.database().ref().child('users').orderByKey().once('value', snap => {
             snap.forEach(child => {
                 this.userState = {
                     user_id: child.key,
@@ -52,83 +53,75 @@ class AddBill extends Component {
                     first_name: child.val().first_name,
                     last_name: child.val().last_name
                 };
-                //this.usernm = this.setState();
-                //console.log( this.userState);
+                // console.log('userState');
+                // console.log(this.userState); //perfectly working 
+                this.setState({ userInput: this.state.userInput.concat(this.userState) });
             });
         });
-        bill_charges.once('value', snap => {
+
+    }
+    appendBillInput() {
+        // e.preventDefault();
+        DbConfig.database().ref().child('billing_charges').orderByKey().once('value', snap => {
             snap.forEach(child => {
                 this.chargeState = {
-                    chrage_key:child.key,
+                    cid: child.key,
                     charge_id: child.charge_id,
                     charge_title: child.val().charge_title,
                     charge_type: child.val().charge_type,
                     charge_amt: child.val().charge_amt
                 };
-                this.usercharge = this.chargeState;
-               //console.log( this.usercharge);
+               
+                //console.log(this.chargeState); //perfectly working 
+                this.setState({ chargeInputs: this.state.chargeInputs.concat(this.chargeState) });
             });
         });
-
-        console.log('user charges'+this.usercharge);
-        for (var i = 0; i < this.usercharge.length; i++) {
-            //this.usernm.push(<span  key={i}></span>);
-            console.log(this.usercharge.length);
-         }
-
-         this.usercharge.forEach(child => {
-        
-            console.log(this.usercharge.length);
-        });
-       
     }
- 
-    getInitialState() {
-        return {inputs:[]};
-    }
-   
-    appendInput(e) {
-        e.preventDefault();
-        var newInput = this.state.inputs.length;
-            console.log(newInput);
-        this.setState({ inputs: this.state.inputs.concat(newInput)},function(){
-            return;
-        });
 
-    }
+
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
-    sendCallback(e, r) {
-        console.log(r);
-        console.log(e);
-        this.setState({
-            title: "",
-            value: "",
-            status: ": SEND"
+    renderUserInput() {
+        return this.state.userInput.map((user) => {
+            return (<option id={user.user_id} ref={el => this.bill_nm = el} value={user.email} onChange={this.handleChange}>{user.first_name}</option>);
         });
     }
 
+    renderChargeInput() {
+        return this.state.chargeInputs.map((charge) => {
+            return (
+                <div>
+                    <label>{charge.charge_title}</label>
+                    <input type="text" className="form-control" ref={el => this.total = el} value={charge.charge_amt} onChange={this.handleChange} />
+                </div>
+            )
+        });
+    }
     handleSubmitFirebase(event) {
         //alert('A push was submitted: ' + this.state.value);
         event.preventDefault();
+       alert('submit form');
+        this.billrange = this.billto.value + "-" + this.billfrom.value;
+        //this.total = this.total  + this.total;
         var billInfo = {
-            bill_name: this.pnm.value,
-            bill_flatno: this.flatno.value,
+            bill_eml: this.bill_nm.value,
             bill_due_date: this.billdue.value,
-            bill_eml: this.billeml.value,
-            bill_period: this.billrange.value,
-            total: this.billtotal.value,
+            bill_period: this.billrange,
+            status: this.status.value,
             bill_id: DbConfig.database().ref('billing').push(billInfo).key
         }; //user info
+
+        alert('submit'+billInfo);
         DbConfig.database().ref('billing').push(billInfo);
-        this.pnm.value = ''; // <- clear the input
-        this.flatno.value = '';
+        this.bill_nm.value = ''; // <- clear the input
+        this.billdue.value = '';
+        this.status.value = '';
     }
-  
 
     render() {
+
         return (
             <div className="content">
                 <NavBar></NavBar>
@@ -142,54 +135,39 @@ class AddBill extends Component {
                                 <h4 className="card-title">Add Bill</h4>
                                 <form onSubmit={this.handleSubmitFirebase}>
                                     <div className="form-group label-floating is-empty">
-                                        <label className="control-label">Person Name</label>
-                                        <div className="dropdown-container">
-                                            <div className="dropdown-display">
-                                                <span>{this.state.first_name}</span>
-                                                <i className="fa fa-angle-down"></i>
+                                        <a href="javascript:void(0)" onClick={this.appendUserInput}><i className="fa fa-plus-circle"></i>Load Users</a>
+                                        <div className="room-main">
+                                            <div className="online-est">
+                                                <select className="room-form">
+                                                    {this.renderUserInput()}
+                                                </select>
                                             </div>
                                         </div>
                                         <span className="material-input"></span></div>
-
+                                    <div className="form-group label-floating is-empty">
+                                        <a href="javascript:void(0)" onClick={this.appendBillInput}><i className="fa fa-plus-circle"></i>Load Charges</a>
                                         <div className="room-main">
-                                        <div className="online-est">
-                                            <h2 className="room-head">Bill charges
-                                                <a href="javascript:void(0);" onClick={this.appendInput} className="rednew-btn"><i className="fa fa-plus-circle"></i> Add charge</a>
-                                            </h2>
-                    
-                                           {this.state.inputs.map(function(item){
-                                                return (
-                                                        <div className="room-form" key={item} id={item}>
-                                                            {item}
-                                                            <a href="" className="remove"><i className="fa fa-remove"></i></a>
-                                                            <ul>
-                                                                <li>
-                                                                    <label>Name <span className="red">*</span></label>
-                                                                    <input type="text" ref={'name'+item} defaultValue={item} />
-                                                                </li>
-                    
-                                                            </ul>
-                                                        </div>
-                                                )
-                    
-                                           })}
+                                            <div className="online-est">
+                                                {this.renderChargeInput()}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="form-group label-floating is-empty">
-                                            <label className="control-label">status</label>
-                                            <select>
-                                                <option value="Unpaid">Unpaid</option>
-                                                <option value="Paid">Paid</option>
-                                            </select>
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
-                                            <label className="control-label">total</label>
-                                            <input type="text" className="form-control" ref={el => this.billtotal = el} onChange={this.handleChange} />
+                                        <label className="control-label">status</label>
+                                        <select classNam="online-est" ref={el => this.status = el}>
+                                            <option value="Unpaid">Unpaid</option>
+                                            <option value="Paid">Paid</option>
+                                        </select>
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
-                                            <label className="control-label">Bill period</label>
-                                            <input type="date" className="form-control" ref={el => this.billto = el} onChange={this.handleChange} />
-                                            <input type="date" className="form-control" ref={el => this.billfrom = el} onChange={this.handleChange} />
+                                        <label className="control-label">Bill due date</label>
+                                        <input type="date" className="form-control" ref={el => this.billdue = el} onChange={this.handleChange} />
+
+                                        <span className="material-input"></span></div>
+                                    <div className="form-group label-floating is-empty">
+                                        <label className="control-label">Bill period</label>
+                                        <input type="date" className="form-control" ref={el => this.billto = el} onChange={this.handleChange} />
+                                        <input type="date" className="form-control" ref={el => this.billfrom = el} onChange={this.handleChange} />
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <span className="material-input"></span></div>
