@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DbConfig from '../config/database';
 import NavBar from '../components/NavBar';
+import { createEventHandlerWithConfig } from 'recompose';
 
 class AddBill extends Component {
 
@@ -10,14 +11,15 @@ class AddBill extends Component {
         this.state = {
             bill_nm: '',
             bill_eml: '',
-            bill_total: '',
             bill_id: '',
             chargeInputs: [],
-            chargeTotal: [],
+            chargeTotal: 0,
             userInput: [],
-            total: '',
+            Total: 0,
             status: '',
-            selected: []
+            selected: [],
+            charges_amt:[]
+            
         };
         this.userState = {
             user_id: '',
@@ -35,6 +37,9 @@ class AddBill extends Component {
         this.handleSubmitFirebase = this.handleSubmitFirebase.bind(this);
         this.appendBillInput = this.appendBillInput.bind(this);
         this.appendUserInput = this.appendUserInput.bind(this);
+        this.countTotal = this.countTotal.bind(this);
+        this.renderUserInput = this.renderUserInput.bind(this);
+        this.renderChargeInput = this.renderChargeInput.bind(this);
     }
 
     _onSelect(option) {
@@ -88,33 +93,53 @@ class AddBill extends Component {
             return (<option id={user.user_id} ref={el => this.bill_nm = el} value={user.email} onChange={this.handleChange}>{user.first_name}</option>);
         });
     }
+    countTotal(){
+        var chargeTotal = 0;
+        this.state.chargeInputs.forEach(charge => {
 
+            chargeTotal +=  parseInt(charge.charge_amt);
+            //console.log('total', parseInt(chargeTotal)); 
+
+        })
+        this.setState({ Total: chargeTotal});
+       
+    }
     renderChargeInput() {
         return this.state.chargeInputs.map((charge) => {
             return (
                 <div>
                     <label>{charge.charge_title}</label>
-                    <input type="text" className="form-control" ref={el => this.total = el} value={charge.charge_amt} onChange={this.handleChange} />
+                    <input type="text" className="form-control" ref={el => this.charges_amt= el} id="amt" name="charge_amt[]" value={charge.charge_amt} onChange={this.handleChange} />
                 </div>
             )
         });
     }
     handleSubmitFirebase(event) {
-        //alert('A push was submitted: ' + this.state.value);
+      
         event.preventDefault();
-       alert('submit form');
         this.billrange = this.billto.value + "-" + this.billfrom.value;
-        //this.total = this.total  + this.total;
-        var billInfo = {
-            bill_eml: this.bill_nm.value,
-            bill_due_date: this.billdue.value,
-            bill_period: this.billrange,
-            status: this.status.value,
-            bill_id: DbConfig.database().ref('billing').push(billInfo).key
-        }; //user info
+        var counter = 0;
+        this.state.userInput.forEach(user => {
+            //console.log('total'+JSON.stringify(user)); 
+            counter++;
+            console.log(counter);
+            var billInfo = {
+                bill_eml: user.email,
+                bill_name:user.first_name,
+                bill_due_date: this.billdue.value,
+                bill_period: this.billrange,
+                status: this.status.value,
+                total:this.state.Total,
+                bill_id: DbConfig.database().ref('billing').push(billInfo).key
+            }; //user info
 
-        alert('submit'+billInfo);
-        DbConfig.database().ref('billing').push(billInfo);
+            console.log('billInfo'+JSON.stringify(billInfo)); 
+            DbConfig.database().ref('billing/feb').push(billInfo) ;
+        })
+    
+       //alert('submit'+JSON.stringify(billInfo));
+     // DbConfig.database().ref('billing').push(billInfo) ;
+       alert('Bill Generates Successfully') ;
         this.bill_nm.value = ''; // <- clear the input
         this.billdue.value = '';
         this.status.value = '';
@@ -149,20 +174,24 @@ class AddBill extends Component {
                                         <div className="room-main">
                                             <div className="online-est">
                                                 {this.renderChargeInput()}
+                                              
                                             </div>
                                         </div>
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <label className="control-label">status</label>
-                                        <select classNam="online-est" ref={el => this.status = el}>
+                                        <select className="status-drop" ref={el => this.status = el}>
                                             <option value="Unpaid">Unpaid</option>
                                             <option value="Paid">Paid</option>
                                         </select>
                                         <span className="material-input"></span></div>
+                                        <div className="form-group label-floating is-empty">
+                                            <label className="control-label">Total</label>
+                                            <input type="text" className="form-control"  value={this.state.Total} onClick={this.countTotal} onChange={this.handleChange} />
+                                            <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <label className="control-label">Bill due date</label>
                                         <input type="date" className="form-control" ref={el => this.billdue = el} onChange={this.handleChange} />
-
                                         <span className="material-input"></span></div>
                                     <div className="form-group label-floating is-empty">
                                         <label className="control-label">Bill period</label>

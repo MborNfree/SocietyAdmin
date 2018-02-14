@@ -107,7 +107,10 @@
    color: black;
 }
 
-
+.status-drop {
+	margin-top: 8px;
+	margin-left: 50px;
+}
 .online-est{
     padding-top: 20px;
 }
